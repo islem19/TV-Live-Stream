@@ -1,0 +1,54 @@
+{
+  "tv": [
+    {
+      "id": "1",
+      "title": "Programme National",
+      "description": "Watch TV Channel",
+      "localImageResource": "canal_algerie_logo"
+    },
+    {
+      "id": "2",
+      "title": "Canal Algerie",
+      "description": "Watch TV Channel",
+      "localImageResource": "canal_algerie_logo"
+    },
+    {
+      "id": "3",
+      "title": "A3",
+      "description": "Watch TV Channel",
+      "localImageResource": "canal_algerie_logo"
+    },
+    {
+      "id": "4",
+      "title": "Coran Algerie",
+      "description": "Watch TV Channel",
+      "localImageResource": "canal_algerie_logo"
+    },
+    {
+      "id": "5",
+      "title": "Algerie 5",
+      "description": "Watch TV Channel",
+      "localImageResource": "canal_algerie_logo"
+    }
+  ],
+  "radio": [
+  {
+    "id": "1",
+    "title": "Radio Algerie",
+    "description": "Listen to Radio",
+    "localImageResource": "radio_algerie_logo"
+  },
+  {
+    "id": "2",
+    "title": "Radio Algere 2",
+    "description": "Listen to Radio",
+    "localImageResource": "radio_algerie_logo"
+  },
+  {
+    "id": "3",
+    "title": "Radio Algerie 3",
+    "description": "Listen to Radio",
+    "localImageResource": "radio_algerie_logo"
+  }
+  ]
+}
