@@ -15,6 +15,8 @@
 package dz.islem.androidtvapp.fragment;
 
 import android.os.Bundle;
+
+import androidx.leanback.app.BackgroundManager;
 import androidx.leanback.app.BrowseFragment;
 import androidx.leanback.widget.ArrayObjectAdapter;
 import androidx.leanback.widget.HeaderItem;
@@ -28,20 +30,31 @@ import androidx.leanback.widget.RowPresenter;
 
 import android.util.Log;
 
+import java.util.List;
+
 import dz.islem.androidtvapp.R;
-import dz.islem.androidtvapp.presenter.GridItemPresenter;
+import dz.islem.androidtvapp.interfaces.IMainFragment;
+import dz.islem.androidtvapp.model.Radio;
+import dz.islem.androidtvapp.model.Tv;
+import dz.islem.androidtvapp.presenter.TvChannelPresenter;
+import dz.islem.androidtvapp.presenter.RadioPresenter;
+import dz.islem.androidtvapp.remote.RemoteManager;
 
 
-public class MainFragment extends BrowseFragment {
+public class MainFragment extends BrowseFragment implements IMainFragment {
     private static final String TAG = "MainFragment";
     private ArrayObjectAdapter mRowsAdapter;
+    private BackgroundManager mBackgroundManager;
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         Log.i(TAG, "onCreate");
         super.onActivityCreated(savedInstanceState);
+
         setupUIElements();
-        loadRows();
+        setupAdapter();
+        loadData();
+        setupBackgroundManager();
         setupEventListeners();
     }
 
@@ -51,7 +64,7 @@ public class MainFragment extends BrowseFragment {
     }
 
     private void setupUIElements() {
-        // setBadgeDrawable(getActivity().getResources().getDrawable(R.drawable.videos_by_google_banner));
+        //setBadgeDrawable(getActivity().getResources().getDrawable(R.drawable.videos_by_google_banner));
         setTitle("Android TV Channels!"); // Badge, when set, takes precedent
         // over title
         setHeadersState(HEADERS_ENABLED);
@@ -62,24 +75,50 @@ public class MainFragment extends BrowseFragment {
 
     }
 
-    private void loadRows() {
+    ArrayObjectAdapter tvRowAdapter;
+    ArrayObjectAdapter radioRowAdapter;
+
+    private void setupAdapter() {
+
         mRowsAdapter = new ArrayObjectAdapter(new ListRowPresenter());
 
-        HeaderItem gridItemPresenterHeader = new HeaderItem(0,"Algeria TV Channel");
-        GridItemPresenter mGridPresenter = new GridItemPresenter();
-        ArrayObjectAdapter gridRowAdapter = new ArrayObjectAdapter(mGridPresenter);
-        gridRowAdapter.add("Item 1");
-        gridRowAdapter.add("Item 2");
+        /* First Row Adapter*/
+        HeaderItem gridItemPresenterHeader = new HeaderItem(0,"Radio");
+        RadioPresenter mRadioPresenter = new RadioPresenter();
+        radioRowAdapter = new ArrayObjectAdapter(mRadioPresenter);
+        mRowsAdapter.add(new ListRow(gridItemPresenterHeader, radioRowAdapter));
 
-        mRowsAdapter.add(new ListRow(gridItemPresenterHeader, gridRowAdapter));
+        /* Card Row Adapter*/
+        HeaderItem cardPresenterHeader = new HeaderItem(1,"TV Channel");
+        TvChannelPresenter mTvChannelPresenter = new TvChannelPresenter();
+        tvRowAdapter = new ArrayObjectAdapter(mTvChannelPresenter);
+        mRowsAdapter.add(new ListRow(cardPresenterHeader,tvRowAdapter));
 
         setAdapter(mRowsAdapter);
+    }
 
+    private void setupBackgroundManager() {
+        mBackgroundManager = BackgroundManager.getInstance(getActivity());
+        mBackgroundManager.attach(getActivity().getWindow());
     }
 
     private void setupEventListeners() {
         setOnItemViewClickedListener(new ItemViewClickedListener());
         setOnItemViewSelectedListener(new ItemViewSelectedListener());
+    }
+
+    private void loadData(){
+        RemoteManager.newInstance(getContext(),this).featchData();
+    }
+
+    @Override
+    public void notifyOnTvDataAvailable(List<Tv> tv) {
+        for (Tv t : tv) tvRowAdapter.add(t);
+    }
+
+    @Override
+    public void notifyOnRadioDataAvailable(List<Radio> radio) {
+        for (Radio r :radio) radioRowAdapter.add(r);
     }
 
 
@@ -94,8 +133,14 @@ public class MainFragment extends BrowseFragment {
         @Override
         public void onItemSelected(Presenter.ViewHolder itemViewHolder, Object item, RowPresenter.ViewHolder rowViewHolder, Row row) {
 
+            if (item instanceof Tv) {
+                mBackgroundManager.setDrawable(getResources().getDrawable(R.drawable.bg_tv));
+            }else {
+                mBackgroundManager.setDrawable(getResources().getDrawable(R.drawable.bg_radio));
+            }
         }
     }
+
 }
 
 
