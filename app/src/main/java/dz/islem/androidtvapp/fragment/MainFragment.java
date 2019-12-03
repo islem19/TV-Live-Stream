@@ -18,7 +18,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.leanback.app.BackgroundManager;
-import androidx.leanback.app.BrowseFragment;
+import androidx.leanback.app.BrowseSupportFragment;
 import androidx.leanback.widget.ArrayObjectAdapter;
 import androidx.leanback.widget.HeaderItem;
 import androidx.leanback.widget.ListRow;
@@ -26,6 +26,7 @@ import androidx.leanback.widget.ListRowPresenter;
 import androidx.leanback.widget.OnItemViewClickedListener;
 import androidx.leanback.widget.OnItemViewSelectedListener;
 import androidx.leanback.widget.Presenter;
+import androidx.leanback.widget.PresenterSelector;
 import androidx.leanback.widget.Row;
 import androidx.leanback.widget.RowPresenter;
 
@@ -42,17 +43,17 @@ import dz.islem.androidtvapp.presenter.RadioPresenter;
 import dz.islem.androidtvapp.remote.RemoteManager;
 
 
-public class MainFragment extends BrowseFragment implements IMainFragment {
+public class MainFragment extends BrowseSupportFragment implements IMainFragment {
     private static final String TAG = "MainFragment";
-    private ArrayObjectAdapter mRowsAdapter;
-    private BackgroundManager mBackgroundManager;
-    private ArrayObjectAdapter tvRowAdapter;
-    private ArrayObjectAdapter radioRowAdapter;
+    private static ArrayObjectAdapter mRowsAdapter;
+    private static BackgroundManager mBackgroundManager;
+    private static ArrayObjectAdapter tvRowAdapter;
+    private static ArrayObjectAdapter radioRowAdapter;
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         Log.i(TAG, "onCreate");
-        super.onActivityCreated(savedInstanceState);
+        super.onCreate(savedInstanceState);
 
         setupUIElements();
         setupAdapter();
@@ -70,15 +71,19 @@ public class MainFragment extends BrowseFragment implements IMainFragment {
         //setBadgeDrawable(getActivity().getResources().getDrawable(R.drawable.videos_by_google_banner));
         setTitle("Android TV Channels!"); // Badge, when set, takes precedent
         // over title
-        setHeadersState(HEADERS_ENABLED);
-        setHeadersTransitionOnBackEnabled(true);
+        setHeadersState(HEADERS_DISABLED);
+        setHeadersTransitionOnBackEnabled(false);
 
         // set fastLane (or headers) background color
         setBrandColor(Color.TRANSPARENT);
 
+        setHeaderPresenterSelector(new PresenterSelector() {
+            @Override
+            public Presenter getPresenter(Object item) {
+                return new TvChannelPresenter();
+            }
+        });
     }
-
-
 
     private void setupAdapter() {
 
@@ -127,6 +132,16 @@ public class MainFragment extends BrowseFragment implements IMainFragment {
     private class ItemViewClickedListener implements OnItemViewClickedListener {
         @Override
         public void onItemClicked(Presenter.ViewHolder itemViewHolder, Object item, RowPresenter.ViewHolder rowViewHolder, Row row) {
+
+            PlayerFragment mFragment= new PlayerFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString("link","https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");
+            //bundle.putString("link","https://thepaciellogroup.github.io/AT-browser-tests/audio/jeffbob.mp3");
+            mFragment.setArguments(bundle);
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.main_browse_fragment, mFragment, null)
+                    .addToBackStack(null)
+                    .commit();
 
         }
     }

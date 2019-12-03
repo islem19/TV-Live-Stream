@@ -1,6 +1,7 @@
 package dz.islem.androidtvapp.remote;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.google.gson.Gson;
 
@@ -25,6 +26,7 @@ public class RemoteManager {
     }
 
     public void featchData(){
+        Log.e("TAG", "featchData: " );
         String json = Utils.inputStreamToString(mContext.getResources().openRawResource(
                 R.raw.data));
         LocalData dataRow = new Gson().fromJson(json, LocalData.class);

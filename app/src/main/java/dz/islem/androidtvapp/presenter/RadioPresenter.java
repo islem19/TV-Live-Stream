@@ -13,8 +13,8 @@ import dz.islem.androidtvapp.model.Radio;
 
 public class RadioPresenter extends Presenter {
     private static Context mContext;
-    private static int CARD_WIDTH = 200;
-    private static int CARD_HEIGHT = 100;
+    private static int CARD_WIDTH = 300;
+    private static int CARD_HEIGHT = 200;
 
     private static class ViewHolder extends Presenter.ViewHolder {
         private Radio radio;
