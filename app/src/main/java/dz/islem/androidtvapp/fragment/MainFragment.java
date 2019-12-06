@@ -135,7 +135,7 @@ public class MainFragment extends BrowseSupportFragment implements IMainFragment
 
             PlayerFragment mFragment= new PlayerFragment();
             Bundle bundle = new Bundle();
-            bundle.putString("link","https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");
+            bundle.putString("link","https://playtv.fr/player/embed/canal-algerie/");
             //bundle.putString("link","https://thepaciellogroup.github.io/AT-browser-tests/audio/jeffbob.mp3");
             mFragment.setArguments(bundle);
             getFragmentManager().beginTransaction()

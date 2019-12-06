@@ -10,6 +10,7 @@ public class Tv {
     @SerializedName("title") private String title;
     @SerializedName("description") private String description;
     @SerializedName("localImageResource") private String thumbnail;
+    @SerializedName("url") private String url;
 
     public Tv(){}
 
@@ -49,5 +50,13 @@ public class Tv {
     public int getImageResource(Context context) {
         return context.getResources()
                 .getIdentifier(thumbnail, "drawable", context.getPackageName());
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

@@ -10,6 +10,7 @@ public class Radio {
     @SerializedName("title") private String title;
     @SerializedName("description") private String description;
     @SerializedName("localImageResource") private String thumbnail;
+    @SerializedName("url") private String url;
 
     public int getId() {
         return id;
@@ -46,5 +47,13 @@ public class Radio {
     public int getImageResource(Context context) {
         return context.getResources()
                 .getIdentifier(thumbnail, "drawable", context.getPackageName());
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

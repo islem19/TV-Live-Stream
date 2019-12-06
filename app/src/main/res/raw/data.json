@@ -2,53 +2,95 @@
   "tv": [
     {
       "id": "1",
-      "title": "Programme National",
-      "description": "Watch TV Channel",
-      "localImageResource": "canal_algerie_logo"
+      "title": "Algérie 3",
+      "description": "Algérie 3 (en arabe : القناة الجزائرية الثالثة), également connue sous le nom de A3, est la troisième chaîne de télévision algérienne de l'Établissement public de télévision.",
+      "localImageResource": "algerie_3_logo",
+      "url": ""
     },
     {
       "id": "2",
-      "title": "Canal Algerie",
-      "description": "Watch TV Channel",
-      "localImageResource": "canal_algerie_logo"
+      "title": "Canal Algérie",
+      "description": "Canal Algérie est une chaîne généraliste offrant un panel de programmes diversifiés alliant l'information, la culture, le divertissement et le sport.",
+      "localImageResource": "canal_algerie_logo",
+      "url": ""
     },
     {
       "id": "3",
-      "title": "A3",
-      "description": "Watch TV Channel",
-      "localImageResource": "canal_algerie_logo"
+      "title": "ENTV",
+      "description": "La première Chaîne Nationale Algérienne ",
+      "localImageResource": "entv_logo",
+      "url": ""
     },
     {
       "id": "4",
-      "title": "Coran Algerie",
-      "description": "Watch TV Channel",
-      "localImageResource": "canal_algerie_logo"
+      "title": "Ennahar TV",
+      "description": "Première chaîne d'information lancée en Algérie",
+      "localImageResource": "ennahar_logo",
+      "url": ""
     },
     {
       "id": "5",
-      "title": "Algerie 5",
-      "description": "Watch TV Channel",
-      "localImageResource": "canal_algerie_logo"
+      "title": "Algerie TV 5",
+      "description": "Algérie 5 est une chaîne de télévision algérienne consacrée au Coran et à la connaissance de l'Islam.",
+      "localImageResource": "entv_logo",
+      "url": ""
+    },{
+      "id": "6",
+      "title": "Echorouk TV",
+      "description": "La télé de toute la famille; قناة كل العائلة\\nEchorouk TV est une chaîne de télévision généraliste privée algérienne basée à Alger.",
+      "localImageResource": "echorouk_logo",
+      "url": ""
+    },
+    {
+      "id": "7",
+      "title": "El Djazairia One",
+      "description": "La chaîne de tous les Algériens »\\nEl Djazairia One est une chaîne de télévision généraliste privée algérienne, lancée en mai 2012.",
+      "localImageResource": "el_djazairia_logo",
+      "url": ""
+    },
+    {
+      "id": "8",
+      "title": "Samira TV",
+      "description": "Samira TV est une chaîne de télévision gastronomique algérienne, lancée le 1ᵉʳ juillet 2013. Il s'agit de la première chaîne de télévision dédiée à la cuisine au Maghreb.",
+      "localImageResource": "samira_tv_logo",
+      "url": ""
     }
   ],
   "radio": [
   {
     "id": "1",
-    "title": "Radio Algerie",
-    "description": "Listen to Radio",
-    "localImageResource": "radio_algerie_logo"
+    "title": "Chaine 1",
+    "description": "",
+    "localImageResource": "radio_algerie_logo",
+    "url": ""
   },
   {
     "id": "2",
-    "title": "Radio Algere 2",
-    "description": "Listen to Radio",
-    "localImageResource": "radio_algerie_logo"
+    "title": "El Bahdja",
+    "description": "",
+    "localImageResource": "bahdja_logo",
+    "url": ""
   },
   {
     "id": "3",
-    "title": "Radio Algerie 3",
-    "description": "Listen to Radio",
-    "localImageResource": "radio_algerie_logo"
+    "title": "Jil FM",
+    "description": "",
+    "localImageResource": "jil_fm_logo",
+    "url": ""
+  },
+  {
+    "id": "4",
+    "title": "Radio Dzair",
+    "description": "",
+    "localImageResource": "radio_algerie_logo",
+    "url": ""
+  },
+  {
+      "id": "5",
+      "title": "Radio Coran",
+      "description": "",
+      "localImageResource": "radio_algerie_logo",
+      "url": ""
   }
   ]
 }
