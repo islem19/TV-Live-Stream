@@ -14,7 +14,7 @@ import dz.islem.androidtvapp.model.Tv;
 public class TvChannelPresenter extends Presenter {
 
     private static Context mContext;
-    private static int CARD_WIDTH = 300;
+    private static int CARD_WIDTH = 200;
     private static int CARD_HEIGHT = 200;
 
     private static class  ViewHolder extends Presenter.ViewHolder {
